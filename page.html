@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div id="CreateButtons"></div>
+<script>
+var num = [1,2,3,4,5,6,7,8,9,0,"."];
+var arifmetic = ["*","/","+","-"];
+var funbut= ["=","C"];
+text = " <div class='row'>";
+for(i = 0; i < num.length; i++){
+    text += "<button type='button' name= num[i] value= num[i] class='btn btn-default span num'>" + num[i] + "</button>";
+}
+text += "<button type='button'>" + "</button>";
+text += "<button type='button'>" + "</button>";
+text += "</div>";
+text += " <div class='row'>";
+for(i = 0; i < arifmetic.length; i++){
+    text += "<button type='button' name= arifmetic[i] value= arifmetic[i] class='btn btn-default span num'>" + arifmetic[i] + "</button>";
+}
+text += "</div>";
+text += "<div class='row'>";
+for(i = 0; i < funbut.length; i++){
+    text += "<button type='button' name= funbut[i] value=funbut[i] class='btn btn-default span num'>" + funbut[i] + "</button>";
+}
+text += "<button type='button'>" + "</button>";
+text += "<button type='button'>" + "</button>";
+text += "</div>";
+document.getElementById("CreateButtons").innerHTML = text;	
+</script>
+</body>
+</html>
