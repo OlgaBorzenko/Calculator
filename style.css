@@ -35,3 +35,6 @@ h1{
 .nomar{
 	margin: 0;
 }
+.remove{
+	float: right;
+}
