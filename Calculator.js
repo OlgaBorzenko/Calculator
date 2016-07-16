@@ -3,6 +3,7 @@ Calculator = function(selector) {
     this.buttons = [[1,2,3,4,5,6,7,8,9,0,".",'(',')'],
                 ["*","/","+","-"],
                 ["=","C"]];
+    var that = this;
 
     this.buildCalculator = function(){
         var outerRow = $('<div class="row bor buttons calculator"></div>');
@@ -16,10 +17,26 @@ Calculator = function(selector) {
         $(this.selector).append(outerRow);
     }
     this.buildHeader = function(container){
-
+       var dirow = $('<div class="row"></div>') ;
+       var h1 = $('<h1></h1>');
+       var span1 = $('<span > Welcome to</span>');
+       var span2 = $('<span id="h1"> Calculator</span>');
+       span2.on("click",this.historyEmpty);
+       h1.append(span1);
+       h1.append(span2);
+       dirow.append(h1);
+       container.append(dirow);
+       $(this.selector).append(container);
     }
     this.buildDisplay = function(container){
-        
+        var divhis = $('<div class="history"></div>');
+        var ro = $('<div class="row"></div>');
+        var input = $('<input type="text" size="40" name="input" id="dis">');
+
+        ro.append(input);
+        container.append(divhis);
+        container.append(ro);
+        $(this.selector).append(container);
     }
 
     this.buildButtons = function (container) {
@@ -74,7 +91,7 @@ Calculator = function(selector) {
 
     this.onClear = function(){        
         var value = $("#dis").val();
-        $(".history").append("<div><span class=\"val\">" + value + "</span><span class=\"remove\">X</span></div>");
+        $(".history").append(that.historyRow(value));
 
         $("#dis").val("");
     }
@@ -86,6 +103,25 @@ Calculator = function(selector) {
     this.onSymbol = function(){
         var value = $("#dis").val();
         $("#dis").val(value + $(this).val());
+    },
+    this.historyEmpty = function(){
+        $(".history").empty();
+    },
+    this.historyRow = function(value){
+        var divcon = $('<div>');
+        var spanval = $('<span class="val">');       
+        spanval.text(value);
+        var spanrem = $('<span class="remove"> X </span>');
+        spanrem.on("click",function(){
+          $(this).parent().remove();
+        });
+        spanval.on("click",function(){
+            $("#dis").val($(this).text());
+        });
+        divcon.append(spanval);
+        divcon.append(spanrem);
+        return divcon;
+
     }
 }
 
